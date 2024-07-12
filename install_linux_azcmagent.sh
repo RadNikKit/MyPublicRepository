@@ -304,6 +304,7 @@ distro_minor_version=$(echo "${distro_version}" | cut -f2 -d".")
 
 # Configuring commands from https://docs.microsoft.com/en-us/windows-server/administration/linux-package-repository-for-microsoft-software
 
+# Disabling local repositories to download the packages from the Internet
 sudo subscription-manager repos --disable=*
 
 case "${distro}" in
@@ -753,6 +754,7 @@ elif [ "${noproxy}" -eq 1 ]; then
     sudo azcmagent config clear proxy.url
 fi
 
+# Enabling local repositories to download the packages from the Internet
 sudo subscription-manager repos --enable=*
 
 exit_success "Latest version of azcmagent is installed."
