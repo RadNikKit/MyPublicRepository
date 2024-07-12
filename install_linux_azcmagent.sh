@@ -304,6 +304,8 @@ distro_minor_version=$(echo "${distro_version}" | cut -f2 -d".")
 
 # Configuring commands from https://docs.microsoft.com/en-us/windows-server/administration/linux-package-repository-for-microsoft-software
 
+sudo subscription-manager repos --disable=*
+
 case "${distro}" in
     *edHat* | *ed\ Hat*)
         if [ ${arm64} -eq 1 ]; then
@@ -750,5 +752,7 @@ elif [ "${noproxy}" -eq 1 ]; then
     echo "Clearing proxy..."
     sudo azcmagent config clear proxy.url
 fi
+
+sudo subscription-manager repos --enable=*
 
 exit_success "Latest version of azcmagent is installed."
